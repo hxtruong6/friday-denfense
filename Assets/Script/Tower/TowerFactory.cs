@@ -6,9 +6,9 @@ public class TowerFactory : BaseObject
 {
     public Tower[] prototypes;
 
-    public Tower Build(TowerType type, Currency currency)
+    public Tower Build(TowerType type, CoinType coinType)
     {
-        if (CanBuld(type, currency))
+        if (CanBuld(type, coinType))
         {
 
         }
@@ -34,7 +34,7 @@ public class TowerFactory : BaseObject
             return null;
     }
 
-    public bool CanBuld(TowerType type, Currency currency)
+    public bool CanBuld(TowerType type, CoinType coinType)
     {
         return true;
     }

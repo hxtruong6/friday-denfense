@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Financial : BaseItem
 {
-    public Dictionary<Currency, Coin> Coins = new Dictionary<Currency, Coin>();
+    public Dictionary<CoinType, Coin> Coins = new Dictionary<CoinType, Coin>();
 
     public Financial(Coin[] coins)
     {
