@@ -171,148 +171,148 @@ namespace RTS_Cam
             m_Transform = transform;
         }
 
-        private void Update()
-        {
-            if (!useFixedUpdate)
-                CameraUpdate();
-        }
+//        private void Update()
+//        {
+//            if (!useFixedUpdate)
+//                CameraUpdate();
+//        }
 
         private void FixedUpdate()
         {
-            if (useFixedUpdate)
-                CameraUpdate();
+//            if (useFixedUpdate)
+//                CameraUpdate();
         }
-
-        #endregion
-
-        #region RTSCamera_Methods
-
-        /// <summary>
-        /// update camera movement and rotation
-        /// </summary>
-        private void CameraUpdate()
-        {
-            if (FollowingTarget)
-                FollowTarget();
-            else
-                Move();
-
-            HeightCalculation();
-            Rotation();
-            LimitPosition();
-        }
-
-        /// <summary>
-        /// move camera with keyboard or with screen edge
-        /// </summary>
-        private void Move()
-        {
-            if (useKeyboardInput)
-            {
-                Vector3 desiredMove = new Vector3(KeyboardInput.x, 0, KeyboardInput.y);
-
-                desiredMove *= keyboardMovementSpeed;
-                desiredMove *= Time.deltaTime;
-                desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
-                desiredMove = m_Transform.InverseTransformDirection(desiredMove);
-
-                m_Transform.Translate(desiredMove, Space.Self);
-            }
-
-            if (useScreenEdgeInput)
-            {
-                Vector3 desiredMove = new Vector3();
-
-                Rect leftRect = new Rect(0, 0, screenEdgeBorder, Screen.height);
-                Rect rightRect = new Rect(Screen.width - screenEdgeBorder, 0, screenEdgeBorder, Screen.height);
-                Rect upRect = new Rect(0, Screen.height - screenEdgeBorder, Screen.width, screenEdgeBorder);
-                Rect downRect = new Rect(0, 0, Screen.width, screenEdgeBorder);
-
-                desiredMove.x = leftRect.Contains(MouseInput) ? -1 : rightRect.Contains(MouseInput) ? 1 : 0;
-                desiredMove.z = upRect.Contains(MouseInput) ? 1 : downRect.Contains(MouseInput) ? -1 : 0;
-
-                desiredMove *= screenEdgeMovementSpeed;
-                desiredMove *= Time.deltaTime;
-                desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
-                desiredMove = m_Transform.InverseTransformDirection(desiredMove);
-
-                m_Transform.Translate(desiredMove, Space.Self);
-            }
-
-            if (usePanning && Input.GetKey(panningKey) && MouseAxis != Vector2.zero)
-            {
-                Vector3 desiredMove = new Vector3(-MouseAxis.x, 0, -MouseAxis.y);
-
-                desiredMove *= panningSpeed;
-                desiredMove *= Time.deltaTime;
-                desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
-                desiredMove = m_Transform.InverseTransformDirection(desiredMove);
-
-                m_Transform.Translate(desiredMove, Space.Self);
-            }
-        }
-
-        /// <summary>
-        /// calcualte height
-        /// </summary>
-        private void HeightCalculation()
-        {
-            float distanceToGround = DistanceToGround();
-            if (useScrollwheelZooming)
-                zoomPos += ScrollWheel * Time.deltaTime * scrollWheelZoomingSensitivity;
-            if (useKeyboardZooming)
-                zoomPos += ZoomDirection * Time.deltaTime * keyboardZoomingSensitivity;
-
-            zoomPos = Mathf.Clamp01(zoomPos);
-
-            float targetHeight = Mathf.Lerp(minHeight, maxHeight, zoomPos);
-            float difference = 0;
-
-            if (distanceToGround != targetHeight)
-                difference = targetHeight - distanceToGround;
-
-            m_Transform.position = Vector3.Lerp(m_Transform.position,
-                new Vector3(m_Transform.position.x, targetHeight + difference, m_Transform.position.z),
-                Time.deltaTime * heightDampening);
-        }
-
-        /// <summary>
-        /// rotate camera
-        /// </summary>
-        private void Rotation()
-        {
-            if (useKeyboardRotation)
-                transform.Rotate(Vector3.up, RotationDirection * Time.deltaTime * rotationSped, Space.World);
-
-            if (useMouseRotation && Input.GetKey(mouseRotationKey))
-                m_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.deltaTime * mouseRotationSpeed, Space.World);
-        }
-
-        /// <summary>
-        /// follow targetif target != null
-        /// </summary>
-        private void FollowTarget()
-        {
-            Vector3 targetPos = new Vector3(targetFollow.position.x, m_Transform.position.y, targetFollow.position.z) +
-                                targetOffset;
-            m_Transform.position =
-                Vector3.MoveTowards(m_Transform.position, targetPos, Time.deltaTime * followingSpeed);
-        }
-
-        /// <summary>
-        /// limit camera position
-        /// </summary>
-        private void LimitPosition()
-        {
-            if (!limitMap)
-                return;
-
-            m_Transform.position = new Vector3(
-                Mathf.Clamp(m_Transform.position.x, m_Transform.position.x - limitX, m_Transform.position.x + limitX),
-                m_Transform.position.y,
-                Mathf.Clamp(m_Transform.position.z, m_Transform.position.y - limitY, m_Transform.position.y + limitY));
-        }
-
+//
+//        #endregion
+//
+//        #region RTSCamera_Methods
+//
+//        /// <summary>
+//        /// update camera movement and rotation
+//        /// </summary>
+//        private void CameraUpdate()
+//        {
+//            if (FollowingTarget)
+//                FollowTarget();
+//            else
+//                Move();
+//
+//            HeightCalculation();
+//            Rotation();
+//            LimitPosition();
+//        }
+//
+//        /// <summary>
+//        /// move camera with keyboard or with screen edge
+//        /// </summary>
+//        private void Move()
+//        {
+//            if (useKeyboardInput)
+//            {
+//                Vector3 desiredMove = new Vector3(KeyboardInput.x, 0, KeyboardInput.y);
+//
+//                desiredMove *= keyboardMovementSpeed;
+//                desiredMove *= Time.deltaTime;
+//                desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
+//                desiredMove = m_Transform.InverseTransformDirection(desiredMove);
+//
+//                m_Transform.Translate(desiredMove, Space.Self);
+//            }
+//
+//            if (useScreenEdgeInput)
+//            {
+//                Vector3 desiredMove = new Vector3();
+//
+//                Rect leftRect = new Rect(0, 0, screenEdgeBorder, Screen.height);
+//                Rect rightRect = new Rect(Screen.width - screenEdgeBorder, 0, screenEdgeBorder, Screen.height);
+//                Rect upRect = new Rect(0, Screen.height - screenEdgeBorder, Screen.width, screenEdgeBorder);
+//                Rect downRect = new Rect(0, 0, Screen.width, screenEdgeBorder);
+//
+//                desiredMove.x = leftRect.Contains(MouseInput) ? -1 : rightRect.Contains(MouseInput) ? 1 : 0;
+//                desiredMove.z = upRect.Contains(MouseInput) ? 1 : downRect.Contains(MouseInput) ? -1 : 0;
+//
+//                desiredMove *= screenEdgeMovementSpeed;
+//                desiredMove *= Time.deltaTime;
+//                desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
+//                desiredMove = m_Transform.InverseTransformDirection(desiredMove);
+//
+//                m_Transform.Translate(desiredMove, Space.Self);
+//            }
+//
+//            if (usePanning && Input.GetKey(panningKey) && MouseAxis != Vector2.zero)
+//            {
+//                Vector3 desiredMove = new Vector3(-MouseAxis.x, 0, -MouseAxis.y);
+//
+//                desiredMove *= panningSpeed;
+//                desiredMove *= Time.deltaTime;
+//                desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
+//                desiredMove = m_Transform.InverseTransformDirection(desiredMove);
+//
+//                m_Transform.Translate(desiredMove, Space.Self);
+//            }
+//        }
+//
+//        /// <summary>
+//        /// calcualte height
+//        /// </summary>
+//        private void HeightCalculation()
+//        {
+//            float distanceToGround = DistanceToGround();
+//            if (useScrollwheelZooming)
+//                zoomPos += ScrollWheel * Time.deltaTime * scrollWheelZoomingSensitivity;
+//            if (useKeyboardZooming)
+//                zoomPos += ZoomDirection * Time.deltaTime * keyboardZoomingSensitivity;
+//
+//            zoomPos = Mathf.Clamp01(zoomPos);
+//
+//            float targetHeight = Mathf.Lerp(minHeight, maxHeight, zoomPos);
+//            float difference = 0;
+//
+//            if (distanceToGround != targetHeight)
+//                difference = targetHeight - distanceToGround;
+//
+//            m_Transform.position = Vector3.Lerp(m_Transform.position,
+//                new Vector3(m_Transform.position.x, targetHeight + difference, m_Transform.position.z),
+//                Time.deltaTime * heightDampening);
+//        }
+//
+//        /// <summary>
+//        /// rotate camera
+//        /// </summary>
+//        private void Rotation()
+//        {
+//            if (useKeyboardRotation)
+//                transform.Rotate(Vector3.up, RotationDirection * Time.deltaTime * rotationSped, Space.World);
+//
+//            if (useMouseRotation && Input.GetKey(mouseRotationKey))
+//                m_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.deltaTime * mouseRotationSpeed, Space.World);
+//        }
+//
+//        /// <summary>
+//        /// follow targetif target != null
+//        /// </summary>
+//        private void FollowTarget()
+//        {
+//            Vector3 targetPos = new Vector3(targetFollow.position.x, m_Transform.position.y, targetFollow.position.z) +
+//                                targetOffset;
+//            m_Transform.position =
+//                Vector3.MoveTowards(m_Transform.position, targetPos, Time.deltaTime * followingSpeed);
+//        }
+//
+//        /// <summary>
+//        /// limit camera position
+//        /// </summary>
+//        private void LimitPosition()
+//        {
+//            if (!limitMap)
+//                return;
+//
+//            m_Transform.position = new Vector3(
+//                Mathf.Clamp(m_Transform.position.x, m_Transform.position.x - limitX, m_Transform.position.x + limitX),
+//                m_Transform.position.y,
+//                Mathf.Clamp(m_Transform.position.z, m_Transform.position.y - limitY, m_Transform.position.y + limitY));
+//        }
+//
         /// <summary>
         /// set the target
         /// </summary>
@@ -343,6 +343,7 @@ namespace RTS_Cam
 
             return 0f;
         }
+
 
         #endregion
     }
