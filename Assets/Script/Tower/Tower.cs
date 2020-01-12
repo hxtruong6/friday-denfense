@@ -11,20 +11,59 @@ public enum TowerType
 public class Tower : MyObject
 {
     public TowerType Type;
-    public Coin[] CostToBuild;
-    public Coin Price;
+    public Price CostToBuild;
+    public Price Price;
+
     public Tower NextLevelTower;
     public Tower[] UpgradeTowers;
 
-    // Start is called before the first frame update
-    void Start()
+    public virtual bool CanLevelUpWithCoin(Coin coin)
     {
-        
+        if (NextLevelTower == null)
+            return false;
+
+        return MyGameManager.Coins.CanBuyWithCoin(coin);
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual Tower LevelUpWithCoin(Coin coin)
     {
-        
+        if (CanLevelUpWithCoin(coin))
+        {
+            MyGameManager.Coins.BuyWithCoin(coin);
+
+            return NextLevelTower;
+        }
+        return null;
+    }
+
+    public virtual bool CanUpgradeWithCoin(Coin coin)
+    {
+        if (NextLevelTower == null)
+            return false;
+
+        return MyGameManager.Coins.CanBuyWithCoin(coin);
+    }
+
+    public virtual Tower UpgradeWithCoin(Coin coin)
+    {
+        if (CanUpgradeWithCoin(coin))
+        {
+            MyGameManager.Coins.BuyWithCoin(coin);
+
+            return NextLevelTower;
+        }
+        return null;
+    }
+
+    public Coin[] CurrenciesThatCanBeUsedToUpdate()
+    {
+        if (NextLevelTower == null)
+            return null;
+        return MyGameManager.Coins.CurrenciesThatCanBePurchasedWithPrice(NextLevelTower.Price);
+    }
+
+    public Coin[] CurrenciesThatCanBePurchased()
+    {
+        return MyGameManager.Coins.CurrenciesThatCanBePurchasedWithPrice(Price);
     }
 }

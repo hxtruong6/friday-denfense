@@ -6,29 +6,38 @@ public class TowerFactory : BaseObject
 {
     public Tower[] prototypes;
 
-
-    public Tower Build(TowerType type)
+    public Tower Build(TowerType type, Currency currency)
     {
+        if (CanBuld(type, currency))
+        {
+
+        }
+
         return null;
     }
 
+    public Tower CloneWithType(TowerType type)
+    {
+        Tower tower = null;
+        foreach(Tower t in prototypes)
+            if (t.Type == type)
+            {
+                tower = t;
+                break;
+            }
 
-    public bool CanBuld(TowerType type)
+        if (tower != null)
+        {
+            return Instantiate(tower);
+        }
+        else
+            return null;
+    }
+
+    public bool CanBuld(TowerType type, Currency currency)
     {
         return true;
     }
+    
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
