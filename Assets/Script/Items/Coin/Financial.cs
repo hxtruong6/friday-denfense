@@ -67,4 +67,18 @@ public class Financial : BaseItem
 
         return result.ToArray();
     }
+
+    public bool CanBePurchasedWithPrice(Price price)
+    {
+        Coin[] coinList = price.ToArray();
+       
+        if (coinList != null)
+        {
+            foreach (Coin c in coinList)            
+                if (CanBuyWithCoin(c))
+                    return true;            
+        }
+
+        return false;
+    }
 }

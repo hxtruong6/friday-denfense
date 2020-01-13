@@ -66,4 +66,15 @@ public class Tower : MyObject
     {
         return MyGameManager.Coins.CurrenciesThatCanBePurchasedWithPrice(Price);
     }
+
+    public Tower[] TowerCanBeUpgraded()
+    {
+        List<Tower> result = new List<Tower>();
+
+        foreach (Tower t in UpgradeTowers)
+            if (MyGameManager.Coins.CanBePurchasedWithPrice(t.Price))
+                result.Add(t);
+
+        return result.ToArray();
+    }
 }

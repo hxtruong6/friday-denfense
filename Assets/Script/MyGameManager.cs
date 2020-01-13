@@ -5,7 +5,7 @@ using UnityEngine;
 public class MyGameManager : MonoBehaviour
 {
     public static float speed = 1;
-
+    public HP CurrentHP;
     public static Financial Coins = new Financial(new Coin[1] {new GoldCoin(250)});   
 
 
