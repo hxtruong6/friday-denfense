@@ -26,7 +26,6 @@ namespace RTS_Cam
         #endregion
 
         private Transform m_Transform; //camera tranform
-        public bool useFixedUpdate = false; //use FixedUpdate() or Update()
 
         #region Movement
 
@@ -57,8 +56,10 @@ namespace RTS_Cam
         #region MapLimits
 
         public bool limitMap = true;
-        public float limitX = 50f; //x limit of map
-        public float limitY = 50f; //z limit of map
+        public float minX = 0f; //x limit of map
+        public float maxX = 50f;
+        public float minY = 50f; //z limit of map
+        public float maxY = 50f;
 
         #endregion
 
@@ -171,19 +172,10 @@ namespace RTS_Cam
             m_Transform = transform;
         }
 
-//        private void Update()
-//        {
-//            if (!useFixedUpdate)
-//                CameraUpdate();
-//        }
-
         private void FixedUpdate()
         {
-//            if (useFixedUpdate)
             CameraUpdate();
         }
-
-//
 
         #endregion
 
@@ -194,14 +186,16 @@ namespace RTS_Cam
         /// </summary>
         private void CameraUpdate()
         {
-//            if (FollowingTarget)
-//                FollowTarget();
-//            else
-            Move();
+            if (FollowingTarget)
+                FollowTarget();
+            else
+            {
+                Move();
+            }
 
-//            HeightCalculation();
-//            Rotation();
-//            LimitPosition();
+            HeightCalculation();
+            Rotation();
+            LimitPosition();
         }
 
         /// <summary>
@@ -252,70 +246,68 @@ namespace RTS_Cam
 
                 m_Transform.Translate(desiredMove, Space.Self);
             }
-
         }
 
-//        /// <summary>
-//        /// calcualte height
-//        /// </summary>
-//        private void HeightCalculation()
-//        {
-//            float distanceToGround = DistanceToGround();
-//            if (useScrollwheelZooming)
-//                zoomPos += ScrollWheel * Time.deltaTime * scrollWheelZoomingSensitivity;
-//            if (useKeyboardZooming)
-//                zoomPos += ZoomDirection * Time.deltaTime * keyboardZoomingSensitivity;
-//
-//            zoomPos = Mathf.Clamp01(zoomPos);
-//
-//            float targetHeight = Mathf.Lerp(minHeight, maxHeight, zoomPos);
-//            float difference = 0;
-//
-//            if (distanceToGround != targetHeight)
-//                difference = targetHeight - distanceToGround;
-//
-//            m_Transform.position = Vector3.Lerp(m_Transform.position,
-//                new Vector3(m_Transform.position.x, targetHeight + difference, m_Transform.position.z),
-//                Time.deltaTime * heightDampening);
-//        }
-//
-//        /// <summary>
-//        /// rotate camera
-//        /// </summary>
-//        private void Rotation()
-//        {
-//            if (useKeyboardRotation)
-//                transform.Rotate(Vector3.up, RotationDirection * Time.deltaTime * rotationSped, Space.World);
-//
-//            if (useMouseRotation && Input.GetKey(mouseRotationKey))
-//                m_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.deltaTime * mouseRotationSpeed, Space.World);
-//        }
-//
-//        /// <summary>
-//        /// follow targetif target != null
-//        /// </summary>
-//        private void FollowTarget()
-//        {
-//            Vector3 targetPos = new Vector3(targetFollow.position.x, m_Transform.position.y, targetFollow.position.z) +
-//                                targetOffset;
-//            m_Transform.position =
-//                Vector3.MoveTowards(m_Transform.position, targetPos, Time.deltaTime * followingSpeed);
-//        }
-//
-//        /// <summary>
-//        /// limit camera position
-//        /// </summary>
-//        private void LimitPosition()
-//        {
-//            if (!limitMap)
-//                return;
-//
-//            m_Transform.position = new Vector3(
-//                Mathf.Clamp(m_Transform.position.x, m_Transform.position.x - limitX, m_Transform.position.x + limitX),
-//                m_Transform.position.y,
-//                Mathf.Clamp(m_Transform.position.z, m_Transform.position.y - limitY, m_Transform.position.y + limitY));
-//        }
-//
+        /// <summary>
+        /// calcualte height
+        /// </summary>
+        private void HeightCalculation()
+        {
+            float distanceToGround = DistanceToGround();
+            if (useScrollwheelZooming)
+                zoomPos += ScrollWheel * Time.deltaTime * scrollWheelZoomingSensitivity;
+            if (useKeyboardZooming)
+                zoomPos += ZoomDirection * Time.deltaTime * keyboardZoomingSensitivity;
+
+            zoomPos = Mathf.Clamp01(zoomPos);
+
+            float targetHeight = Mathf.Lerp(minHeight, maxHeight, zoomPos);
+            float difference = 0;
+
+            if (distanceToGround != targetHeight)
+                difference = targetHeight - distanceToGround;
+            m_Transform.position = Vector3.Lerp(m_Transform.position,
+                new Vector3(m_Transform.position.x, targetHeight + difference, m_Transform.position.z),
+                Time.deltaTime * heightDampening);
+        }
+
+        /// <summary>
+        /// rotate camera
+        /// </summary>
+        private void Rotation()
+        {
+            if (useKeyboardRotation)
+                transform.Rotate(Vector3.up, RotationDirection * Time.deltaTime * rotationSped, Space.World);
+
+            if (useMouseRotation && Input.GetKey(mouseRotationKey))
+                m_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.deltaTime * mouseRotationSpeed, Space.World);
+        }
+
+        /// <summary>
+        /// follow targetif target != null
+        /// </summary>
+        private void FollowTarget()
+        {
+            Vector3 targetPos = new Vector3(targetFollow.position.x, m_Transform.position.y, targetFollow.position.z) +
+                                targetOffset;
+            m_Transform.position =
+                Vector3.MoveTowards(m_Transform.position, targetPos, Time.deltaTime * followingSpeed);
+        }
+
+        /// <summary>
+        /// limit camera position
+        /// </summary>
+        private void LimitPosition()
+        {
+            if (!limitMap)
+                return;
+
+            m_Transform.position = new Vector3(
+                Mathf.Clamp(m_Transform.position.x, minX, maxY),
+                m_Transform.position.y,
+                Mathf.Clamp(m_Transform.position.z, minY, maxY));
+        }
+
         /// <summary>
         /// set the target
         /// </summary>

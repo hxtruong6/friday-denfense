@@ -11,6 +11,8 @@ public class TowerSpot : MyObject
 
     public GameObject UICanvas;
 
+//    [SerializeField] Texture2D cursor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +28,18 @@ public class TowerSpot : MyObject
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            UICanvas.SetActive(!UICanvas.activeSelf);
+            UICanvas.SetActive(true);
 //            UICanvas.GetComponent<TowerSelectItem>().GetComponent<RectTransform>().position = transform.position;
         }
     }
+
+//    void OnMouseEnter()
+//    {
+//        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+//    }
+//
+//    void OnMouseExit()
+//    {
+//        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+//    }
 }
