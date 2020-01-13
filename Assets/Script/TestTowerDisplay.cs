@@ -37,38 +37,14 @@ public class TestTowerDisplay : MonoBehaviour
         {
             GameObject towerDisplayPrefab = Instantiate(TowerDisplayPrefab);
             towerDisplayPrefab.transform.SetParent(TowerPanelCanvas.transform); //Setting button parent
-//            button.transform.position = TowerPanelCanvas.transform.position;
-////            button.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 0, 10);
-//
-
             towerDisplayPrefab = setTowerDisplay(towerDisplayPrefab, item);
             towerDisplayPrefab.SetActive(true);
-//
-//            button.GetComponent<Button>().onClick.AddListener(OnClick); //Setting what button does when clicked
-//
-//            //Next line assumes button has child with text as first gameobject like button created from GameObject->UI->Button
-//            button.transform.GetChild(0).GetComponent<Text>().text =
-//                item.Price.Coins[CoinType.Gold].Number.ToString(); //Changing text
-//            button.transform.GetChild(0).GetComponent<Text>().resizeTextForBestFit = true;
-//
-//            if (item.IsEnable)
-//            {
-//                button.GetComponent<Image>().sprite = item.EnableSprite;
-//            }
-//            else
-//            {
-//                button.GetComponent<Image>().sprite = item.DisableSprite;
-//            }
-
-//            button.SetActive(true);
-
-
         }
     }
 
     private void OnClick()
     {
-        Debug.Log("Hi this is Tower Diplay");
+        Debug.Log("Hi this is Tower Display");
     }
 
     // Update is called once per frame
@@ -98,7 +74,7 @@ public class TestTowerDisplay : MonoBehaviour
         }
         else
         {
-            priceGO.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
+            priceGO.transform.GetChild(0).gameObject.SetActive(false);
         }
 
         if (towerDisplay.Price.Coins.ContainsKey(CoinType.Gem))
@@ -111,7 +87,7 @@ public class TestTowerDisplay : MonoBehaviour
         }
         else
         {
-            priceGO.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            priceGO.transform.GetChild(1).gameObject.SetActive(false);
         }
         priceGO.transform.SetParent(go.transform.GetChild(1));
 
