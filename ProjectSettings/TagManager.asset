@@ -5,8 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - FxTemporaire
-  - Undefined
   - TowerUI
+  - target
+  - Tower
+  - Button
   layers:
   - Default
   - TransparentFX

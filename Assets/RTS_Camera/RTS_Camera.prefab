@@ -135,7 +135,6 @@ MonoBehaviour:
   mapLimitSettingsFoldout: 1
   targetingSettingsFoldout: 1
   inputSettingsFoldout: 1
-  useFixedUpdate: 0
   keyboardMovementSpeed: 5
   screenEdgeMovementSpeed: 3
   followingSpeed: 5
@@ -152,8 +151,10 @@ MonoBehaviour:
   keyboardZoomingSensitivity: 2
   scrollWheelZoomingSensitivity: 25
   limitMap: 1
-  limitX: 10
-  limitY: 10
+  minX: 0
+  maxX: 50
+  minY: 50
+  maxY: 50
   targetFollow: {fileID: 0}
   targetOffset: {x: 0, y: 0, z: 0}
   useScreenEdgeInput: 1
