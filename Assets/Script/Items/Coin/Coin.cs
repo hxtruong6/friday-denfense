@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Currency
+public enum CoinType
 {
     Gold,
     Gem
@@ -12,9 +12,9 @@ public class Coin : BaseItem
 {
     public string Name;
     public int Number;
-    public Currency Type;
+    public CoinType Type;
 
-    public Coin(string name, Currency type, int number)
+    public Coin(string name, CoinType type, int number)
     {
         Name = name;
         Number = number;

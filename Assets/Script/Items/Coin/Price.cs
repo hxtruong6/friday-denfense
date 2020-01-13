@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Price : BaseItem
 {
-    public Dictionary<Currency, Coin> Coins = new Dictionary<Currency, Coin>();
+    public Dictionary<CoinType, Coin> Coins = new Dictionary<CoinType, Coin>();
 
     public Price(Coin[] coins)
     {
@@ -14,7 +14,7 @@ public class Price : BaseItem
         }
     }
 
-    public Coin GetPrice(Currency type)
+    public Coin GetPrice(CoinType type)
     {
         if (Coins.ContainsKey(type))
             return Coins[type];
