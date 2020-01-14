@@ -34,6 +34,7 @@ public class SelectionManager : MonoBehaviour
 
     private bool isPointerCursor(GameObject selection)
     {
+
         if (selectableTags.Contains(selection.tag))
         {
             return true;
