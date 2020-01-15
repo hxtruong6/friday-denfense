@@ -9,6 +9,7 @@ TagManager:
   - target
   - Tower
   - Button
+  - Enemy
   layers:
   - Default
   - TransparentFX

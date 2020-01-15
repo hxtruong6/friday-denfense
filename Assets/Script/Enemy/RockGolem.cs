@@ -18,6 +18,6 @@ public class RockGolem : Enemy
 
     protected override void Set_Animation_Move()
     {
-        GetComponent<Animator>().SetTrigger(Constants.ENEMY_WALK);
+//        GetComponent<Animator>().SetTrigger(Constants.ENEMY_WALK);
     }
 }

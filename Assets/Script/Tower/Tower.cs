@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public enum TowerType
 {
@@ -12,7 +15,7 @@ public class Tower : MyObject
 {
     public float Range;
     public Weapon Weapon;
-    public MyObject[] Target;
+    public List<MyObject> Targets = new List<MyObject>();
     public MyObject CurrentTarget;
 
     public TowerType Type;
@@ -21,6 +24,79 @@ public class Tower : MyObject
 
     public Tower NextLevelTower;
     public Tower[] UpgradeTowers;
+
+    [SerializeField] private int rotationSpeed = 5;
+    [SerializeField] private GameObject Bullet;
+    [SerializeField] private float facingThreshold;
+    [SerializeField] private float thresholdShooting;
+
+    [SerializeField] private Transform bulletPosition;
+   [SerializeField] private ParticleSystem particle;
+    private SphereCollider sphereCollider;
+    private float totalTime = 0f;
+
+    void Start()
+    {
+        sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider.radius = Range;
+        facingThreshold = Mathf.Clamp01(facingThreshold);
+    }
+
+    void Update()
+    {
+        CurrentTarget = getTargetFollow();
+        if (CurrentTarget != null)
+        {
+//            smoothLookAt(CurrentTarget.transform.position);
+            transform.LookAt(CurrentTarget.transform);
+            totalTime += Time.deltaTime;
+            if (isLookAtTarget(CurrentTarget) && totalTime>= thresholdShooting)
+            {
+                shooting(CurrentTarget);
+                totalTime = 0;
+            }
+        }
+        else
+        {
+            totalTime = 0;
+        }
+    }
+
+    private void shooting(MyObject currentTarget)
+    {
+        var clone = Instantiate(Bullet, bulletPosition.position, bulletPosition.rotation);
+        clone.transform.SetParent(bulletPosition);
+        particle.Play();
+    }
+
+    private bool isLookAtTarget(MyObject currentTarget)
+    {
+        Vector3 dirFromAtoB = (currentTarget.transform.position - transform.position).normalized;
+        float dotProd = Vector3.Dot(dirFromAtoB, transform.forward);
+
+        if (dotProd > facingThreshold)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    private MyObject getTargetFollow()
+    {
+        if (Targets.Count > 0)
+        {
+            return Targets[0];
+        }
+
+        return null;
+    }
+
+//    void smoothLookAt(Vector3 newDirection)
+//    {
+//        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDirection), Time.deltaTime * rotationSpeed);
+//    }
 
     public virtual bool CanLevelUpWithCoin(Coin coin)
     {
@@ -38,6 +114,7 @@ public class Tower : MyObject
 
             return NextLevelTower;
         }
+
         return null;
     }
 
@@ -57,6 +134,7 @@ public class Tower : MyObject
 
             return NextLevelTower;
         }
+
         return null;
     }
 
@@ -81,5 +159,27 @@ public class Tower : MyObject
                 result.Add(t);
 
         return result.ToArray();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log(other.gameObject.tag + "  EXIT");
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            var index = Targets.IndexOf(other.gameObject.GetComponent<Enemy>());
+            if (index >= 0)
+            {
+                Targets.RemoveAt(index);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.tag + "  ENTER: " + other.gameObject.GetComponent<Enemy>());
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Targets.Add(other.gameObject.GetComponent<Enemy>());
+        }
     }
 }
