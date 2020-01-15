@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MyObject
-{
-    public Map Map;
-    public bool Automation = false;
-    public bool Victory = false;
+{        
+    public EnemyDelegate Delegate;
 
-    protected Vector3 CurrenStation;
+    protected bool Automation = false;
+    protected bool Victory = false;
+    protected Map Map;
+    protected int NextIndexStation;
+
+    public override void SetUpInStart()
+    {
+        base.SetUpInStart();
+    }
 
     public override void UpdatePerFrame()
     {
         base.UpdatePerFrame();
+
         AutoMove();
     }
 
@@ -20,22 +27,28 @@ public class Enemy : MyObject
     {
         Automation = true;
 
-        Map = map;
+        Map = map;           
 
-        CurrenStation = Map.NextStation();
-        transform.position = CurrenStation;
+        NextIndexStation = 1;
+        transform.position = Map.Station(0);
     }
 
     protected virtual void AutoMove()
     {
         if (Automation && Map != null && isAlive() && !Victory)
         {
-            if (Vector3.Distance(transform.position, CurrenStation) < 1)
+            Vector3 nextStation = Map.Station(NextIndexStation);
+            if (!CanMoveTo(nextStation))
             {
-                CurrenStation = Map.NextStation();
+                NextIndexStation++;
+                nextStation = Map.Station(NextIndexStation);
             }
-            MoveTo(CurrenStation);
-        }
+
+            if (NextIndexStation == Map.Stations.Count)
+                Victory = true;
+
+            MoveTo(nextStation);
+        }   
     }
 
     protected virtual void Set_Animation_Move()
@@ -66,5 +79,11 @@ public class Enemy : MyObject
     protected virtual void Set_Animation_Jump()
     {
 
+    }
+
+    protected override void Die()
+    {
+        if (Delegate != null)
+            Delegate.Die(this);
     }
 }

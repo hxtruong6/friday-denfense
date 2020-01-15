@@ -5,18 +5,7 @@ using UnityEngine;
 
 public class Map : BaseItem
 {
-    public List<Vector3> Stations = new List<Vector3>();
-    private int NextIndex = 0;
-
-    public Vector3 NextStation()
-    {
-        if (NextIndex + 1 < Stations.Count)
-        {
-            NextIndex++;
-            return Stations[NextIndex - 1];
-        }
-        return new Vector3(0, 0);
-    }
+    public List<Vector3> Stations = new List<Vector3>();    
 
     public Map(string fileName)
     {
@@ -45,5 +34,14 @@ public class Map : BaseItem
 
             Stations.Add(new Vector3(x, y, z));
         }
+    }
+
+    public Vector3 Station(int index)
+    {
+        if (index < 0)
+            return Stations[0];
+        if (index >= Stations.Count)
+            return Stations[Stations.Count - 1];
+        return Stations[index];
     }
 }

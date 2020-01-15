@@ -2,36 +2,102 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : BaseObject
+public interface EnemyDelegate
+{
+    void Die(Enemy enemy);
+}
+
+public class EnemyManager : BaseObject, EnemyDelegate
 {
     public Enemy[] prototypes;
-    public List<Enemy> enemies;
+    public List<Enemy> CurrentEnemies = new List<Enemy>();
 
     public TextAsset WalkMapFile;
     public TextAsset FlyMapFile;
- 
+    public MyGameManager MyGameManager;
+
     private Map WalkMap;
     private Map FlyMap;
+
+    private int NumberOfEnemiesInCurrentLevel;
+
+    private Level CurrentLevel
+    {
+        get
+        {
+            return MyGameManager.CurrentLevel;
+        }
+    }
+
+    public void Die(Enemy enemy)
+    {
+        if (!enemy.isAlive())
+        {
+            CurrentEnemies.Remove(enemy);
+
+            enemy.Delegate = null;
+
+            NumberOfEnemiesInCurrentLevel--;
+        }
+            
+        if (CanLevelUP())
+        {
+            LevelUp();
+        }
+    }
+
+    public void CreateNewEnemies()
+    {
+        NumberOfEnemiesInCurrentLevel = prototypes.Length * (MyGameManager.CurrentLevel.CurrentLevel + 1);
+        CurrentEnemies.RemoveRange(0, CurrentEnemies.Count);       
+    }
+
+    public void LevelUp()
+    {        
+        CreateNewEnemies();
+
+        MyGameManager.LevelUp();
+    }
+
+
+    public bool CanLevelUP()
+    {
+        return NumberOfEnemiesInCurrentLevel == 0;
+    }
 
     void Start()
     {
         WalkMap = new Map(WalkMapFile);    
         FlyMap = new Map(FlyMapFile);
 
-        enemies = new List<Enemy>();
         foreach (Enemy e in prototypes)
-        {
-            e.AutoMove(WalkMap);
-            enemies.Add(e);
-        }
-            
+            e.gameObject.SetActive(false);
 
+        NumberOfEnemiesInCurrentLevel = prototypes.Length;
 
+        CreateNewEnemies();                 
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
-        
+        if (NumberOfEnemiesInCurrentLevel > 0
+            && ((CurrentEnemies.Count > 0
+                && Vector3.Distance(CurrentEnemies[CurrentEnemies.Count - 1].transform.position, WalkMap.Station(0)) > 2)
+            || CurrentEnemies.Count == 0)
+            )
+
+        {
+            int index = Random.Range(0, prototypes.Length - 1);
+            Debug.Log(index);
+            Enemy t = Instantiate(prototypes[index]);
+            
+            t.gameObject.SetActive(true);
+            t.AutoMove(WalkMap);
+            t.Delegate = this;
+            CurrentEnemies.Add(t);
+
+            NumberOfEnemiesInCurrentLevel--;
+        }        
     }
 }
