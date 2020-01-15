@@ -10,6 +10,11 @@ public enum TowerType
 
 public class Tower : MyObject
 {
+    public float Range;
+    public Weapon Weapon;
+    public MyObject[] Target;
+    public MyObject CurrentTarget;
+
     public TowerType Type;
     public Price CostToBuild;
     public Price Price;
