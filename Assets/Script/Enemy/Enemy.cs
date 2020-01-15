@@ -8,6 +8,8 @@ public class Enemy : MyObject
     public bool Automation = false;
     public bool Victory = false;
 
+    protected Vector3 CurrenStation;
+
     public override void UpdatePerFrame()
     {
         base.UpdatePerFrame();
@@ -20,21 +22,19 @@ public class Enemy : MyObject
 
         Map = map;
 
-        transform.position = Map.NextStation();
+        CurrenStation = Map.NextStation();
+        transform.position = CurrenStation;
     }
 
     protected virtual void AutoMove()
     {
         if (Automation && Map != null && isAlive() && !Victory)
         {
-            Vector3 nextStation = Map.NextStation();
-            if (nextStation != null)
+            if (Vector3.Distance(transform.position, CurrenStation) < 1)
             {
-                if (CanMoveTo(nextStation))
-                {
-                    MoveTo(nextStation);
-                }
+                CurrenStation = Map.NextStation();
             }
+            MoveTo(CurrenStation);
         }
     }
 

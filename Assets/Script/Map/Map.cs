@@ -10,7 +10,7 @@ public class Map : BaseItem
 
     public Vector3 NextStation()
     {
-        if (NextIndex < Stations.Count)
+        if (NextIndex + 1 < Stations.Count)
         {
             NextIndex++;
             return Stations[NextIndex - 1];
@@ -45,7 +45,5 @@ public class Map : BaseItem
 
             Stations.Add(new Vector3(x, y, z));
         }
-
-        Debug.Log(Stations);
     }
 }

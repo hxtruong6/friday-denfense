@@ -71,7 +71,7 @@ public class MyObject : BaseObject
             return false;
         return true;
     }
-   
+
     public virtual void RotateToDestination(Vector3 des)
     {        
         Vector3 targetDirection = des - transform.position;
