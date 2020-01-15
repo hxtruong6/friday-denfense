@@ -4,22 +4,37 @@ using UnityEngine;
 
 public class MyObject : BaseObject
 {
-    public HP Hp;
+    public float MaxHP;
+       
     public float MoveSpeed;
-    
-    public Level Level;
-    
+    public HP Hp;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        SetUpInAwake();
     }
 
-    // Update is called once per frame
+    private void Start()
+    {
+        SetUpInStart();
+
+        Hp = new HP(MaxHP);
+    }
+
+
     void Update()
     {      
         UpdatePerFrame();
+    }
+
+    public virtual void SetUpInStart()
+    {
+
+    }
+
+    public virtual void SetUpInAwake()
+    {
+
     }
 
     public virtual void UpdatePerFrame()
@@ -38,6 +53,11 @@ public class MyObject : BaseObject
     }
 
     public virtual void Attack()
+    {
+
+    }
+
+    protected virtual void Die()
     {
 
     }
@@ -69,14 +89,14 @@ public class MyObject : BaseObject
     {
         if (Vector3.Distance(transform.position, des) < 1)
             return false;
-        return true;
+        return true;    
     }
 
     public virtual void RotateToDestination(Vector3 des)
     {        
         Vector3 targetDirection = des - transform.position;
 
-        float singleStep = 1 * Time.deltaTime;
+        float singleStep = 0.05f;
 
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
       

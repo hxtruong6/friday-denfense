@@ -5,14 +5,26 @@ using UnityEngine;
 public class MyGameManager : MonoBehaviour
 {
     public static float speed = 1;
+    public float MaxHP;
+    public int MaxLevel;
+
     public HP CurrentHP;
-    public static Financial Coins = new Financial(new Coin[1] {new GoldCoin(250)});   
+    public static Financial Coins = new Financial(new Coin[1] {new GoldCoin(250)});
+    public Level CurrentLevel;
+        
+    protected MyGameManager()
+    {
+    }
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void LevelUp()
     {
         
+    }
+
+    void Start()
+    {
+        CurrentLevel = new Level(MaxLevel);
+        CurrentHP = new HP(MaxHP);
     }
 
     public bool CanBuildTower(Tower tower)
