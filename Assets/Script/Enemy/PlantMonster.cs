@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bat : Enemy
+public class PlantMonster : Enemy
 {
-    
     public override void UpdatePerFrame()
     {
         base.UpdatePerFrame();
-  
+
     }
 
     public override void MoveTo(Vector3 des)
@@ -19,6 +18,6 @@ public class Bat : Enemy
 
     protected override void Set_Animation_Move()
     {
-        GetComponent<Animator>().SetTrigger(Constants.ENEMY_FLY_FORWARD);
+        GetComponent<Animator>().SetBool(Constants.ENEMY_WALK, true);
     }
 }
