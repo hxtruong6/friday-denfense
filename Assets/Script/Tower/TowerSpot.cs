@@ -18,10 +18,16 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
     Ray ray;
     RaycastHit hit;
 
+    private Transform m_transform;
+
+    private MyGameManager myGameManager;
+    private int count = 0;
+
     public override void SetUpInStart()
     {
         base.SetUpInStart();
         ShowItemsUICanvas.gameObject.SetActive(false);
+        myGameManager = FindObjectOfType<MyGameManager>();
 
         Tower[] towers = new Tower[AvailableTowers.Count];
         for (int i = 0; i < AvailableTowers.Count; i++)
@@ -34,39 +40,33 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
             towers[i].CostToBuild = new Price(g2);
         }
 
+        m_transform = this.transform;
+
         Factory.prototypes = towers;
         Debug.Log("Tower plot: " + DateTime.Now + Random.Range(-10.0f, 10.0f));
     }
 
     public override void UpdatePerFrame()
     {
-
         base.UpdatePerFrame();
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         int layerMask = 1 << 9;
 
-        if (Input.GetKey(KeyCode.Mouse0) && Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
-//            Debug.Log("UpdatePerFrame: " + transform.position);
-
-            if (!ShowItemsUICanvas.gameObject.activeSelf)
+            if (hit.transform == transform)
             {
-                itemUICanvasModels = Factory.ShowTowerInUICanvas(this);
-                ShowItemsUICanvas.ShowItems(itemUICanvasModels);
+                Debug.Log("Count: " + count++);
+                Debug.Log("UpdatePerFrame: " + transform.position);
+
+                if (!ShowItemsUICanvas.gameObject.activeSelf)
+                {
+                    itemUICanvasModels = Factory.ShowTowerInUICanvas(this);
+                    ShowItemsUICanvas.ShowItems(itemUICanvasModels);
+                }
             }
         }
     }
-
-//
-//    private void OnMouseDown()
-//    {
-//        Debug.Log("Fuck you: " + DateTime.Now);
-//        if (Input.GetKey(KeyCode.Mouse0) && !ShowItemsUICanvas.gameObject.activeSelf)
-//        {
-//            itemUICanvasModels = Factory.ShowTowerInUICanvas(this);
-//            ShowItemsUICanvas.ShowItems(itemUICanvasModels);
-//        }
-//    }
 
     public void OnClick(ItemUICanvasModel model)
     {
@@ -77,10 +77,8 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
                 CurrentTower.transform.parent = null;
                 Destroy(CurrentTower.gameObject);
             }
-            Debug.Log("OnClick: " + gameObject.transform.position);
-            CurrentTower = Factory.Build((Tower) model.Object, gameObject.transform);
-            
 
+            CurrentTower = Factory.Build((Tower) model.Object, transform);
             ShowItemsUICanvas.OnClose();
         }
     }

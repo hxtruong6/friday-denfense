@@ -11,7 +11,9 @@ public class MyGameManager : MonoBehaviour
     public HP CurrentHP;
     public static Financial Coins = new Financial(new Coin[1] {new GoldCoin(1000)});
     public Level CurrentLevel;
-        
+
+//    public Transform CurrentTowerSelected;
+
     protected MyGameManager()
     {
     }

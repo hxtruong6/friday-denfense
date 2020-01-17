@@ -6,7 +6,13 @@ using UnityEngine.UI;
 public class ItemUICanvas : MonoBehaviour
 {
     private ItemUICanvasModel Model;
+    private Button button;
 
+    void Start()
+    {
+        button = GetComponent<Button>();
+        button.onClick.AddListener(delegate { OnClick(); });
+    }
 
     public void SetModel(ItemUICanvasModel model)
     {
