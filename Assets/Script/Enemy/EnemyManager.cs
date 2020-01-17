@@ -36,6 +36,10 @@ public class EnemyManager : BaseObject, EnemyDelegate
 
             NumberOfEnemiesInCurrentLevel--;
             MyGameManager.Coins.ReceiveCoin(new GoldCoin(enemy.AwardGold));
+            if (CurrentEnemies.Count == 0)
+            {
+                MyGameManager.WinGame();
+            }
         }
 
 
@@ -97,10 +101,6 @@ public class EnemyManager : BaseObject, EnemyDelegate
             t.Delegate = this;
             CurrentEnemies.Add(t);
             NumberOfEnemiesInCurrentLevel--;
-        }
-        else
-        {
-            // Win Game
         }
     }
 }
