@@ -44,7 +44,7 @@ public class MyObject : BaseObject
 
     public virtual bool isAlive()
     {
-        return true;
+        return Hp.IsAlive();
     }
 
     public virtual bool CanAttack()

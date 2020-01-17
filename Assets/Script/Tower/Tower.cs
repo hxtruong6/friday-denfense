@@ -80,6 +80,7 @@ public class Tower : MyObject
         var clone = Instantiate(Bullet, bulletPosition.position, bulletPosition.rotation);
         clone.transform.SetParent(bulletPosition);
         particle.Play();
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     private bool isLookAtTarget(MyObject currentTarget)

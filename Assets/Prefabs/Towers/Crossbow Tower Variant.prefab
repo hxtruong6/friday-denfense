@@ -10,9 +10,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4d7fabfb0bbdc3647becc0d62ed5fdaf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d9c0b5beedc2a4ec9ab1557c9550ab31, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.17
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -25,7 +25,7 @@ AudioSource:
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
-  BypassListenerEffects: 0
+  BypassListenerEffects: 1
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
@@ -107,6 +107,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crossbow Tower Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.71
@@ -149,14 +157,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1099350761, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
