@@ -10,6 +10,8 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
     public Tower[] UpgradeTowers;
     public ShowItemsUICanvas ShowItemsUICanvas;
 
+    public List<GameObject> AvailableTowers = new List<GameObject>();
+
     protected TowerFactory Factory = new TowerFactory();
     protected ItemUICanvasModel[] itemUICanvasModels;
     
@@ -18,7 +20,19 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
         base.SetUpInStart();
         ShowItemsUICanvas.gameObject.SetActive(false);
 
-        Factory.prototypes = UpgradeTowers;
+        Tower[] towers = new Tower[AvailableTowers.Count];
+        for(int i=0; i< AvailableTowers.Count; i++)
+        {
+            towers[i] = AvailableTowers[i].gameObject.GetComponent<Tower>();
+            GoldCoin g1 = new GoldCoin(towers[i].GoldToBuy);
+            GoldCoin g2 = new GoldCoin(towers[i].GoldToSell);
+
+            towers[i].Price = new Price(g1);
+            towers[i].CostToBuild = new Price(g2);
+        }
+
+        Factory.prototypes = towers;
+//        Factory.prototypes = UpgradeTowers;
     }
 
     public override void UpdatePerFrame()
@@ -28,7 +42,7 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
 
     private void OnMouseDown()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && !ShowItemsUICanvas.gameObject.activeSelf)
         {
             itemUICanvasModels = Factory.ShowTowerInUICanvas(this);
             ShowItemsUICanvas.ShowItems(itemUICanvasModels);

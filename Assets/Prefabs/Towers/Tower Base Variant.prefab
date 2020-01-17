@@ -15,8 +15,13 @@ MonoBehaviour:
   MaxHP: 0
   MoveSpeed: 0
   CurrentTower: {fileID: 0}
-  Factory: {fileID: 0}
+  UpgradeTowers:
+  - {fileID: 0}
+  - {fileID: 0}
   ShowItemsUICanvas: {fileID: 0}
+  AvailableTowers:
+  - {fileID: 190534875457269204, guid: 5db2255dc1c5d0a40b5b6fea60558ff7, type: 3}
+  - {fileID: 8299363726019903023, guid: f5e37539714d604409165aa99c35ffb1, type: 3}
 --- !u!1001 &3928926625132583750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34,7 +39,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.99
+      value: 25.71
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_LocalPosition.y

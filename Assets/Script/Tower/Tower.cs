@@ -8,7 +8,8 @@ using Vector3 = UnityEngine.Vector3;
 public enum TowerType
 {
     MachineGun,
-    Rocket
+    Rocket,
+    Crossbow
 };
 
 public class Tower : MyObject
@@ -59,7 +60,8 @@ public class Tower : MyObject
         if (CurrentTarget != null)
         {
 //            smoothLookAt(CurrentTarget.transform.position);
-            transform.LookAt(CurrentTarget.transform);
+            Debug.Log(CurrentTarget.transform.position);
+            transform.LookAt(CurrentTarget.transform.position);
             totalTime += Time.deltaTime;
             if (isLookAtTarget(CurrentTarget) && totalTime>= thresholdShooting)
             {

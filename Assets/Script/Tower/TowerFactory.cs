@@ -9,6 +9,7 @@ public class TowerFactory : BaseObject
     public Tower Build(Tower tower, Transform parentTransform)
     {
         Tower instant = Instantiate(tower);
+//        Tower instant = tower;
 
         Vector3 newPos = parentTransform.position;
         newPos.y += 2.5f;
@@ -24,20 +25,21 @@ public class TowerFactory : BaseObject
         tower.transform.parent = null;
         Destroy(tower.gameObject);
     }
-    
+
     public bool CanBuild(Tower tower)
     {
         return MyGameManager.Coins.CanBePurchasedWithPrice(tower.Price);
     }
-    
+
     public Tower[] TowersCanBuild()
     {
         List<Tower> result = new List<Tower>();
-        foreach(Tower t in prototypes)
+        foreach (Tower t in prototypes)
         {
             if (MyGameManager.Coins.CanBePurchasedWithPrice(t.Price))
                 result.Add(t);
         }
+
         return result.ToArray();
     }
 
@@ -45,14 +47,15 @@ public class TowerFactory : BaseObject
     {
         bool[] checkTowerCanBuild = new bool[prototypes.Length];
         for (int i = 0; i < prototypes.Length; i++)
-            checkTowerCanBuild[i] = MyGameManager.Coins.CanBePurchasedWithPrice(prototypes[i].Price);           
+            checkTowerCanBuild[i] = MyGameManager.Coins.CanBePurchasedWithPrice(prototypes[i].Price);
 
         List<ItemUICanvasModel> result = new List<ItemUICanvasModel>();
 
-        for(int i=0; i<prototypes.Length; i++)
+        for (int i = 0; i < prototypes.Length; i++)
         {
             string description = prototypes[i].Price.GetPrice(CoinType.Gold).Number.ToString();
-            result.Add(new ItemUICanvasModel(null, description, itemUICanvasDelegate, prototypes[i]));
+            var sprite = prototypes[i].gameObject.GetComponent<SpriteRenderer>().sprite;
+            result.Add(new ItemUICanvasModel(sprite, description, itemUICanvasDelegate, prototypes[i]));
         }
 
         return result.ToArray();
