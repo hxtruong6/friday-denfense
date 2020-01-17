@@ -4,42 +4,49 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Experimental.UIElements;
 
-public class TowerSpot : MyObject
+public class TowerSpot : MyObject, ItemUICanvasDelegate
 {
     public Tower CurrentTower;
-    public TowerFactory Factory;
+    public Tower[] UpgradeTowers;
+    public ShowItemsUICanvas ShowItemsUICanvas;
 
-    public GameObject UICanvas;
-
-//    [SerializeField] Texture2D cursor;
-
-    // Start is called before the first frame update
-    void Start()
+    protected TowerFactory Factory = new TowerFactory();
+    protected ItemUICanvasModel[] itemUICanvasModels;
+    
+    public override void SetUpInStart()
     {
-        UICanvas.SetActive(false);
+        base.SetUpInStart();
+        ShowItemsUICanvas.gameObject.SetActive(false);
+
+        Factory.prototypes = UpgradeTowers;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UpdatePerFrame()
     {
+        base.UpdatePerFrame();
     }
 
     private void OnMouseDown()
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            UICanvas.SetActive(true);
-//            UICanvas.GetComponent<TowerSelectItem>().GetComponent<RectTransform>().position = transform.position;
+            itemUICanvasModels = Factory.ShowTowerInUICanvas(this);
+            ShowItemsUICanvas.ShowItems(itemUICanvasModels);
         }
     }
 
-//    void OnMouseEnter()
-//    {
-//        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
-//    }
-//
-//    void OnMouseExit()
-//    {
-//        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-//    }
+    public void OnClick(ItemUICanvasModel model)
+    {
+        if (CurrentTower != null)
+        {
+            CurrentTower.transform.parent = null;
+            Destroy(CurrentTower.gameObject);
+        }
+
+        CurrentTower = Factory.Build((Tower)model.Object, transform.position);      
+        CurrentTower.transform.SetParent(transform);
+
+        ShowItemsUICanvas.OnClose();
+    }
+
 }

@@ -9,7 +9,6 @@ public class TestTowerDisplay : MonoBehaviour
 
     public List<TowerDisplay> TowerDisplays = new List<TowerDisplay>(3);
 
-
     public GameObject TowerPanelCanvas;
     public GameObject TowerDisplayPrefab;
 

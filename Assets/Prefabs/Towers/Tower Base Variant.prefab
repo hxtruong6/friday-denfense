@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59427120203c4f308953e494482c7bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHP: 0
   MoveSpeed: 0
-  Range: 0
-  Target: []
-  CurrentTarget: {fileID: 0}
   CurrentTower: {fileID: 0}
   Factory: {fileID: 0}
+  ShowItemsUICanvas: {fileID: 0}
 --- !u!1001 &3928926625132583750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27,11 +26,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_Name
-      value: Tower Base Variant
+      value: Tower Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
+      propertyPath: m_TagString
+      value: Tower
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.24
+      value: 30.99
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -39,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22
+      value: 42.06
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_LocalRotation.x

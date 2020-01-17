@@ -6,6 +6,18 @@ public class TowerFactory : BaseObject
 {
     public Tower[] prototypes;
 
+    public Tower Build(Tower tower, Vector3 parentPos)
+    {
+        Tower instant = Instantiate(tower);
+
+        Vector3 newPos = parentPos;
+        newPos.y += 2.5f;
+
+        instant.transform.position = newPos;
+
+        return instant;
+    }
+
     public Tower Build(TowerType type, CoinType coinType)
     {
         if (CanBuld(type, coinType))
@@ -39,5 +51,28 @@ public class TowerFactory : BaseObject
         return true;
     }
     
+    public Tower[] TowersCanBuild()
+    {
+        List<Tower> result = new List<Tower>();
+        foreach(Tower t in prototypes)
+        {
+            if (MyGameManager.Coins.CanBePurchasedWithPrice(t.Price))
+                result.Add(t);
+        }
+        return result.ToArray();
+    }
 
+    public ItemUICanvasModel[] ShowTowerInUICanvas(ItemUICanvasDelegate itemUICanvasDelegate)
+    {
+        Tower[] towersCanBuild = TowersCanBuild();
+        List<ItemUICanvasModel> result = new List<ItemUICanvasModel>();
+
+        foreach (Tower t in towersCanBuild)
+        {
+            string description = t.Price.GetPrice(CoinType.Gold).Number.ToString();
+            result.Add(new ItemUICanvasModel(null, description, itemUICanvasDelegate, t));
+        }
+
+        return result.ToArray();
+    }
 }

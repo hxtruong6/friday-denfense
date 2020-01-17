@@ -9,7 +9,7 @@ public class MyGameManager : MonoBehaviour
     public int MaxLevel;
 
     public HP CurrentHP;
-    public static Financial Coins = new Financial(new Coin[1] {new GoldCoin(250)});
+    public static Financial Coins = new Financial(new Coin[1] {new GoldCoin(1000)});
     public Level CurrentLevel;
         
     protected MyGameManager()

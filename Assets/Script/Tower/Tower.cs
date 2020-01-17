@@ -13,6 +13,8 @@ public enum TowerType
 
 public class Tower : MyObject
 {
+    public int GoldToBuy;
+    public int GoldToSell;
     public float Range;
     public Weapon Weapon;
     public List<MyObject> Targets = new List<MyObject>();
@@ -31,26 +33,35 @@ public class Tower : MyObject
     [SerializeField] private float thresholdShooting;
 
     [SerializeField] private Transform bulletPosition;
-   [SerializeField] private ParticleSystem particle;
+    [SerializeField] private ParticleSystem particle;
     private SphereCollider sphereCollider;
     private float totalTime = 0f;
 
-    void Start()
+    public override void SetUpInStart()
     {
+        base.SetUpInStart();
+
+        GoldCoin g1 = new GoldCoin(GoldToBuy);
+        GoldCoin g2 = new GoldCoin(GoldToSell);
+
+        Price = new Price(g1);
+        CostToBuild = new Price(g2);
+
         sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = Range;
         facingThreshold = Mathf.Clamp01(facingThreshold);
     }
+
 
     void Update()
     {
         CurrentTarget = getTargetFollow();
         if (CurrentTarget != null)
         {
-//            smoothLookAt(CurrentTarget.transform.position);
+            //            smoothLookAt(CurrentTarget.transform.position);
             transform.LookAt(CurrentTarget.transform);
             totalTime += Time.deltaTime;
-            if (isLookAtTarget(CurrentTarget) && totalTime>= thresholdShooting)
+            if (isLookAtTarget(CurrentTarget) && totalTime >= thresholdShooting)
             {
                 shooting(CurrentTarget);
                 totalTime = 0;
@@ -93,10 +104,10 @@ public class Tower : MyObject
         return null;
     }
 
-//    void smoothLookAt(Vector3 newDirection)
-//    {
-//        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDirection), Time.deltaTime * rotationSpeed);
-//    }
+    //    void smoothLookAt(Vector3 newDirection)
+    //    {
+    //        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDirection), Time.deltaTime * rotationSpeed);
+    //    }
 
     public virtual bool CanLevelUpWithCoin(Coin coin)
     {

@@ -89,7 +89,7 @@ public class EnemyManager : BaseObject, EnemyDelegate
 
         {
             int index = Random.Range(0, prototypes.Length - 1);
-            Debug.Log(index);
+         
             Enemy t = Instantiate(prototypes[index]);
             
             t.gameObject.SetActive(true);

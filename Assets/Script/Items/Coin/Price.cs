@@ -14,6 +14,11 @@ public class Price : BaseItem
         }
     }
 
+    public Price(Coin coin)
+    {
+        Coins.Add(coin.Type, coin);
+    }
+
     public Coin GetPrice(CoinType type)
     {
         if (Coins.ContainsKey(type))
