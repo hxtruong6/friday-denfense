@@ -5,15 +5,19 @@ using UnityEngine;
 public class Bullet : BaseObject
 {
     public Damage CurrentDamage;
-    public float TimeToLive = 2f;
-    public int BulletSpeed = 50;
-    
+    public float TimeToLive;
+    public int BulletSpeed;
+    public float PhysicalDamage;
+
+    public Damage Damage;
     // Start is called before the first frame update
     void Start()
     {
-        transform.GetComponent<Rigidbody>().AddForce(transform.forward  * BulletSpeed);
-//        transform.GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        Damage = new Damage(PhysicalDamage, 0);
+
+        transform.GetComponent<Rigidbody>().AddForce(transform.forward  * BulletSpeed * Time.deltaTime);
         Destroy(gameObject, TimeToLive);
+
     }
 
     // Update is called once per frame
@@ -26,7 +30,9 @@ public class Bullet : BaseObject
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log("OnTriggerEnter enemy");
             Destroy(gameObject);
+
         }
     }
 

@@ -33,7 +33,7 @@ public class Tower : MyObject
     [SerializeField] private float thresholdShooting;
 
     [SerializeField] private Transform bulletPosition;
-    [SerializeField] private ParticleSystem particle;
+   [SerializeField] private ParticleSystem particle;
     private SphereCollider sphereCollider;
     private float totalTime = 0f;
 
@@ -51,17 +51,17 @@ public class Tower : MyObject
         sphereCollider.radius = Range;
         facingThreshold = Mathf.Clamp01(facingThreshold);
     }
-
+  
 
     void Update()
     {
         CurrentTarget = getTargetFollow();
         if (CurrentTarget != null)
         {
-            //            smoothLookAt(CurrentTarget.transform.position);
+//            smoothLookAt(CurrentTarget.transform.position);
             transform.LookAt(CurrentTarget.transform);
             totalTime += Time.deltaTime;
-            if (isLookAtTarget(CurrentTarget) && totalTime >= thresholdShooting)
+            if (isLookAtTarget(CurrentTarget) && totalTime>= thresholdShooting)
             {
                 shooting(CurrentTarget);
                 totalTime = 0;
@@ -104,10 +104,10 @@ public class Tower : MyObject
         return null;
     }
 
-    //    void smoothLookAt(Vector3 newDirection)
-    //    {
-    //        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDirection), Time.deltaTime * rotationSpeed);
-    //    }
+//    void smoothLookAt(Vector3 newDirection)
+//    {
+//        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDirection), Time.deltaTime * rotationSpeed);
+//    }
 
     public virtual bool CanLevelUpWithCoin(Coin coin)
     {

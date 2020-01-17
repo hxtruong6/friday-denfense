@@ -2546,26 +2546,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 182147967}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &195829538 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 140632, guid: e4183b0f256373044a4a3f833882e57a,
+--- !u!114 &195829541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 195829541, guid: e4183b0f256373044a4a3f833882e57a,
     type: 3}
   m_PrefabInstance: {fileID: 507980501}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &195829541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195829538}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85874f0da611f483eaa86a1cfe400fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 0
-  MoveSpeed: 2
 --- !u!1001 &196155762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7638,10 +7630,6 @@ PrefabInstance:
     - target: {fileID: 140632, guid: e4183b0f256373044a4a3f833882e57a, type: 3}
       propertyPath: m_Name
       value: Toon Rock Golem-Red
-      objectReference: {fileID: 0}
-    - target: {fileID: 140632, guid: e4183b0f256373044a4a3f833882e57a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 434996, guid: e4183b0f256373044a4a3f833882e57a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12988,26 +12976,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 984830915}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &985384124 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 123144, guid: ecb5bcd325ed8a14ca41901ba1186f53,
+--- !u!114 &985384127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 985384127, guid: ecb5bcd325ed8a14ca41901ba1186f53,
     type: 3}
   m_PrefabInstance: {fileID: 1546226213}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &985384127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 985384124}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 232d4afb9aa6140dda54f9d197135264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 0
-  MoveSpeed: 2
 --- !u!1001 &986448321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15809,7 +15789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1178403839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20869,26 +20849,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1576148602}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1577450208 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 189024, guid: 0c3c6035237fffd49aa7fc71e64f4bd8,
+--- !u!114 &1577450209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1577450209, guid: 0c3c6035237fffd49aa7fc71e64f4bd8,
     type: 3}
   m_PrefabInstance: {fileID: 1220670417}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1577450209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577450208}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85e4398b120fe4885b4323b619ac9553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 0
-  MoveSpeed: 2
 --- !u!1001 &1577909133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24846,7 +24818,7 @@ PrefabInstance:
     - target: {fileID: 2089275143370575406, guid: 410dc390350bf0f45b0fcf6e391734aa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.534603
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 2089275143370575406, guid: 410dc390350bf0f45b0fcf6e391734aa,
         type: 3}
@@ -24895,19 +24867,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2089275142079939237, guid: 410dc390350bf0f45b0fcf6e391734aa,
         type: 3}
-      propertyPath: MaxHP
-      value: 0
+      propertyPath: Targets.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2089275142079939237, guid: 410dc390350bf0f45b0fcf6e391734aa,
         type: 3}
-      propertyPath: GoldToBuy
-      value: 100
-      objectReference: {fileID: 0}
+      propertyPath: Targets.Array.data[0]
+      value: 
+      objectReference: {fileID: 195829541}
     - target: {fileID: 2089275142079939237, guid: 410dc390350bf0f45b0fcf6e391734aa,
         type: 3}
-      propertyPath: GoldToSell
-      value: 50
-      objectReference: {fileID: 0}
+      propertyPath: Targets.Array.data[1]
+      value: 
+      objectReference: {fileID: 985384127}
+    - target: {fileID: 2089275142079939237, guid: 410dc390350bf0f45b0fcf6e391734aa,
+        type: 3}
+      propertyPath: Targets.Array.data[2]
+      value: 
+      objectReference: {fileID: 1577450209}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 410dc390350bf0f45b0fcf6e391734aa, type: 3}
 --- !u!1001 &1868437942

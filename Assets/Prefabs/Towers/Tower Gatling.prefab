@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 2089275142079939237}
   m_Layer: 0
   m_Name: Tower Gatling
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,7 +336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9203465719cd0480e8bf2c791984ef78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHP: 0
   MoveSpeed: 0
+  GoldToBuy: 100
+  GoldToSell: 50
   Range: 7
   Targets: []
   CurrentTarget: {fileID: 0}
@@ -356,10 +359,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2089275143370575406}
     m_Modifications:
-    - target: {fileID: 100004, guid: e3c9990225119d4438d4e80b4509bfee, type: 3}
-      propertyPath: m_Name
-      value: FireShooting
-      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: e3c9990225119d4438d4e80b4509bfee, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.019
@@ -403,6 +402,10 @@ PrefabInstance:
     - target: {fileID: 400004, guid: e3c9990225119d4438d4e80b4509bfee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e3c9990225119d4438d4e80b4509bfee, type: 3}
+      propertyPath: m_Name
+      value: FireShooting
       objectReference: {fileID: 0}
     - target: {fileID: 19800004, guid: e3c9990225119d4438d4e80b4509bfee, type: 3}
       propertyPath: lengthInSec

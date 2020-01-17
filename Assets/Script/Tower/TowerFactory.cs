@@ -6,49 +6,28 @@ public class TowerFactory : BaseObject
 {
     public Tower[] prototypes;
 
-    public Tower Build(Tower tower, Vector3 parentPos)
+    public Tower Build(Tower tower, Transform parentTransform)
     {
         Tower instant = Instantiate(tower);
 
-        Vector3 newPos = parentPos;
+        Vector3 newPos = parentTransform.position;
         newPos.y += 2.5f;
 
         instant.transform.position = newPos;
-
+        instant.transform.SetParent(parentTransform);
+        instant.gameObject.SetActive(true);
         return instant;
     }
 
-    public Tower Build(TowerType type, CoinType coinType)
+    public void DestroyTower(Tower tower)
     {
-        if (CanBuld(type, coinType))
-        {
-
-        }
-
-        return null;
+        tower.transform.parent = null;
+        Destroy(tower.gameObject);
     }
-
-    public Tower CloneWithType(TowerType type)
+    
+    public bool CanBuild(Tower tower)
     {
-        Tower tower = null;
-        foreach(Tower t in prototypes)
-            if (t.Type == type)
-            {
-                tower = t;
-                break;
-            }
-
-        if (tower != null)
-        {
-            return Instantiate(tower);
-        }
-        else
-            return null;
-    }
-
-    public bool CanBuld(TowerType type, CoinType coinType)
-    {
-        return true;
+        return MyGameManager.Coins.CanBePurchasedWithPrice(tower.Price);
     }
     
     public Tower[] TowersCanBuild()
@@ -64,13 +43,16 @@ public class TowerFactory : BaseObject
 
     public ItemUICanvasModel[] ShowTowerInUICanvas(ItemUICanvasDelegate itemUICanvasDelegate)
     {
-        Tower[] towersCanBuild = TowersCanBuild();
+        bool[] checkTowerCanBuild = new bool[prototypes.Length];
+        for (int i = 0; i < prototypes.Length; i++)
+            checkTowerCanBuild[i] = MyGameManager.Coins.CanBePurchasedWithPrice(prototypes[i].Price);           
+
         List<ItemUICanvasModel> result = new List<ItemUICanvasModel>();
 
-        foreach (Tower t in towersCanBuild)
+        for(int i=0; i<prototypes.Length; i++)
         {
-            string description = t.Price.GetPrice(CoinType.Gold).Number.ToString();
-            result.Add(new ItemUICanvasModel(null, description, itemUICanvasDelegate, t));
+            string description = prototypes[i].Price.GetPrice(CoinType.Gold).Number.ToString();
+            result.Add(new ItemUICanvasModel(null, description, itemUICanvasDelegate, prototypes[i]));
         }
 
         return result.ToArray();

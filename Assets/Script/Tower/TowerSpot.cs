@@ -37,16 +37,18 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
 
     public void OnClick(ItemUICanvasModel model)
     {
-        if (CurrentTower != null)
+        if (Factory.CanBuild((Tower)model.Object))
         {
-            CurrentTower.transform.parent = null;
-            Destroy(CurrentTower.gameObject);
-        }
+            if (CurrentTower != null)
+            {
+                CurrentTower.transform.parent = null;
+                Destroy(CurrentTower.gameObject);
+            }
 
-        CurrentTower = Factory.Build((Tower)model.Object, transform.position);      
-        CurrentTower.transform.SetParent(transform);
+            CurrentTower = Factory.Build((Tower)model.Object, transform);            
 
-        ShowItemsUICanvas.OnClose();
+            ShowItemsUICanvas.OnClose();
+        }        
     }
 
 }
