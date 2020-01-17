@@ -5,10 +5,9 @@ using UnityEngine;
 public class MyGameManager : MonoBehaviour
 {
     public static float speed = 1;
-    public float MaxHP;
-    public int MaxLevel;
+    public int MaxLevel = 10;
+    public int Lives = 10; 
 
-    public HP CurrentHP;
     public static Financial Coins = new Financial(new Coin[1] {new GoldCoin(1000)});
     public Level CurrentLevel;
 
@@ -25,7 +24,6 @@ public class MyGameManager : MonoBehaviour
     void Start()
     {
         CurrentLevel = new Level(MaxLevel);
-        CurrentHP = new HP(MaxHP);
     }
 
     public bool CanBuildTower(Tower tower)

@@ -96,8 +96,11 @@ public class EnemyManager : BaseObject, EnemyDelegate
             t.AutoMove(WalkMap);
             t.Delegate = this;
             CurrentEnemies.Add(t);
-
             NumberOfEnemiesInCurrentLevel--;
+        }
+        else
+        {
+            // Win Game
         }
     }
 }
