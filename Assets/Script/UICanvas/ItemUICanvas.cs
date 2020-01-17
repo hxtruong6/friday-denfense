@@ -11,8 +11,11 @@ public class ItemUICanvas : MonoBehaviour
     {
         Model = model;
 
-        //gameObject.transform.GetChild(0).GetComponent<RawImage>().texture = Model.Avatar.texture;
-        gameObject.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = Model  .TextDescription;
+        if (Model.Avatar != null)
+            gameObject.transform.GetChild(0).GetComponent<RawImage>().texture = Model.Avatar.texture;
+
+        if (Model.TextDescription != null)
+            gameObject.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = Model.TextDescription;
     }
 
     public void OnClick()

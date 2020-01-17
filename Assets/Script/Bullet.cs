@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet : BaseObject
 {
-    public Damage CurrentDamage;
     public float TimeToLive;
     public int BulletSpeed;
     public float PhysicalDamage;
@@ -31,6 +30,8 @@ public class Bullet : BaseObject
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("OnTriggerEnter enemy");
+
+            other.gameObject.GetComponent<Enemy>().TakeDamage(Damage);
             Destroy(gameObject);
 
         }

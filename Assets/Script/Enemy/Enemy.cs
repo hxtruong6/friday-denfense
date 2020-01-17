@@ -51,6 +51,15 @@ public class Enemy : MyObject
         }   
     }
 
+    public override void TakeDamage(Damage TakeDamage)
+    {
+        Hp.TakeDamage(TakeDamage.Physical + TakeDamage.Magic);
+        if (!isAlive())
+        {
+            Die();
+        }
+    }
+
     protected virtual void Set_Animation_Move()
     {
 
@@ -84,6 +93,11 @@ public class Enemy : MyObject
     protected override void Die()
     {
         if (Delegate != null)
+        {
+            gameObject.GetComponent<AudioSource>().Play();
+            Set_Animation_Die();
             Delegate.Die(this);
+            Destroy(gameObject, 1.5f);
+        }
     }
 }
