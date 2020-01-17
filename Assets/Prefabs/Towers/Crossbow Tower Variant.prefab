@@ -105,19 +105,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100008, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
       propertyPath: m_Name
-      value: Crossbow Tower
+      value: Crossbow Tower Variant
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.82
+      value: 25.71
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.534603
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 42
+      value: 42.06
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 4a98d7b6e8fc18e4bb66926cb30441d5, type: 3}
       propertyPath: m_LocalRotation.x

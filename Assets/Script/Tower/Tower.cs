@@ -60,7 +60,7 @@ public class Tower : MyObject
         if (CurrentTarget != null)
         {
 //            smoothLookAt(CurrentTarget.transform.position);
-            Debug.Log(CurrentTarget.transform.position);
+//            Debug.Log(CurrentTarget.transform.position);
             transform.LookAt(CurrentTarget.transform.position);
             totalTime += Time.deltaTime;
             if (isLookAtTarget(CurrentTarget) && totalTime>= thresholdShooting)
@@ -176,7 +176,7 @@ public class Tower : MyObject
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.gameObject.tag + "  EXIT");
+//        Debug.Log(other.gameObject.tag + "  EXIT");
         if (other.gameObject.CompareTag("Enemy"))
         {
             var index = Targets.IndexOf(other.gameObject.GetComponent<Enemy>());
@@ -189,7 +189,7 @@ public class Tower : MyObject
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag + "  ENTER: " + other.gameObject.GetComponent<Enemy>());
+//        Debug.Log(other.gameObject.tag + "  ENTER: " + other.gameObject.GetComponent<Enemy>());
         if (other.gameObject.CompareTag("Enemy"))
         {
             Targets.Add(other.gameObject.GetComponent<Enemy>());

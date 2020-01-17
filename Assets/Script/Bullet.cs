@@ -30,7 +30,7 @@ public class Bullet : BaseObject
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("OnTriggerEnter enemy");
+//            Debug.Log("OnTriggerEnter enemy");
             Destroy(gameObject);
 
         }

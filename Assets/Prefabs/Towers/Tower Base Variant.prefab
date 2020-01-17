@@ -15,9 +15,6 @@ MonoBehaviour:
   MaxHP: 0
   MoveSpeed: 0
   CurrentTower: {fileID: 0}
-  UpgradeTowers:
-  - {fileID: 0}
-  - {fileID: 0}
   ShowItemsUICanvas: {fileID: 0}
   AvailableTowers:
   - {fileID: 190534875457269204, guid: 5db2255dc1c5d0a40b5b6fea60558ff7, type: 3}
@@ -32,6 +29,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_Name
       value: Tower Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_TagString
