@@ -8,20 +8,24 @@ public class Financial : BaseItem
 
     public Financial(Coin[] coins)
     {
-        foreach(Coin c in coins)
+        foreach (Coin c in coins)
         {
             Coins.Add(c.Type, c);
-        }        
+        }
     }
 
     public void ReceiveCoin(Coin coin)
     {
         if (Coins.ContainsKey(coin.Type))
         {
-            Coin myCoin = Coins[coin.Type];
-            myCoin.Number += coin.Number;
+//            Coin myCoin = Coins[coin.Type];
+//            myCoin.Number += coin.Number;
 
-            Coins.Add(myCoin.Type, myCoin);
+            Coins[coin.Type].Number += coin.Number;
+        }
+        else
+        {
+            Coins.Add(coin.Type, coin);
         }
     }
 
@@ -41,7 +45,7 @@ public class Financial : BaseItem
     }
 
     public bool CanBuyWithCoin(Coin coin)
-    {        
+    {
         if (Coins.ContainsKey(coin.Type))
         {
             Coin myCoin = Coins[coin.Type];
@@ -58,7 +62,7 @@ public class Financial : BaseItem
 
         if (coinList != null)
         {
-            foreach(Coin c in coinList)
+            foreach (Coin c in coinList)
             {
                 if (CanBuyWithCoin(c))
                     result.Add(c);
@@ -71,12 +75,12 @@ public class Financial : BaseItem
     public bool CanBePurchasedWithPrice(Price price)
     {
         Coin[] coinList = price.ToArray();
-       
+
         if (coinList != null)
         {
-            foreach (Coin c in coinList)            
+            foreach (Coin c in coinList)
                 if (CanBuyWithCoin(c))
-                    return true;            
+                    return true;
         }
 
         return false;

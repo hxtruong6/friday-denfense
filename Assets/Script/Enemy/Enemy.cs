@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MyObject
-{        
+{
     public EnemyDelegate Delegate;
+    public Price AwardPrice;
+    public int AwardGold;
 
     protected bool Automation = false;
     protected bool Victory = false;
@@ -27,7 +29,7 @@ public class Enemy : MyObject
     {
         Automation = true;
 
-        Map = map;           
+        Map = map;
 
         NextIndexStation = 1;
         transform.position = Map.Station(0);
@@ -48,7 +50,7 @@ public class Enemy : MyObject
                 Victory = true;
 
             MoveTo(nextStation);
-        }   
+        }
     }
 
     public override void TakeDamage(Damage TakeDamage)
@@ -62,17 +64,14 @@ public class Enemy : MyObject
 
     protected virtual void Set_Animation_Move()
     {
-
     }
 
     protected virtual void Set_Animation_Defend()
     {
-
     }
 
     protected virtual void Set_Animation_TakeDamage()
     {
-
     }
 
     protected virtual void Set_Animation_Die()
@@ -82,12 +81,10 @@ public class Enemy : MyObject
 
     protected virtual void Set_Animation_Attack()
     {
-
     }
 
     protected virtual void Set_Animation_Jump()
     {
-
     }
 
     protected override void Die()

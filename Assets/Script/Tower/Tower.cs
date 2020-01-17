@@ -22,8 +22,8 @@ public class Tower : MyObject
     public MyObject CurrentTarget;
 
     public TowerType Type;
-    public Price CostToBuild;
-    public Price Price;
+    public Price SellPrice;
+    public Price BuyPrice;
 
     public Tower NextLevelTower;
     public Tower[] UpgradeTowers;
@@ -45,8 +45,8 @@ public class Tower : MyObject
         GoldCoin g1 = new GoldCoin(GoldToBuy);
         GoldCoin g2 = new GoldCoin(GoldToSell);
 
-        Price = new Price(g1);
-        CostToBuild = new Price(g2);
+        BuyPrice = new Price(g1);
+        SellPrice = new Price(g2);
 
         sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = Range;
@@ -99,9 +99,12 @@ public class Tower : MyObject
 
     private MyObject getTargetFollow()
     {
-        if (Targets.Count > 0)
+        foreach (var target in Targets)
         {
-            return Targets[0];
+            if (target)
+            {
+                return target;
+            }
         }
 
         return null;
@@ -156,12 +159,12 @@ public class Tower : MyObject
     {
         if (NextLevelTower == null)
             return null;
-        return MyGameManager.Coins.CurrenciesThatCanBePurchasedWithPrice(NextLevelTower.Price);
+        return MyGameManager.Coins.CurrenciesThatCanBePurchasedWithPrice(NextLevelTower.BuyPrice);
     }
 
     public Coin[] CurrenciesThatCanBePurchased()
     {
-        return MyGameManager.Coins.CurrenciesThatCanBePurchasedWithPrice(Price);
+        return MyGameManager.Coins.CurrenciesThatCanBePurchasedWithPrice(BuyPrice);
     }
 
     public Tower[] TowerCanBeUpgraded()
@@ -169,7 +172,7 @@ public class Tower : MyObject
         List<Tower> result = new List<Tower>();
 
         foreach (Tower t in UpgradeTowers)
-            if (MyGameManager.Coins.CanBePurchasedWithPrice(t.Price))
+            if (MyGameManager.Coins.CanBePurchasedWithPrice(t.BuyPrice))
                 result.Add(t);
 
         return result.ToArray();

@@ -20,7 +20,6 @@ public class MyGameManager : MonoBehaviour
 
     public void LevelUp()
     {
-        
     }
 
     void Start()
@@ -32,12 +31,20 @@ public class MyGameManager : MonoBehaviour
     public bool CanBuildTower(Tower tower)
     {
         return true;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    public GoldCoin GetGold()
+    {
+        return (GoldCoin) Coins.Coins[CoinType.Gold];
+    }
+
+    public static void BuildTower(Coin coin)
+    {
+        Coins.Coins[CoinType.Gold].Number -= coin.Number;
     }
 }

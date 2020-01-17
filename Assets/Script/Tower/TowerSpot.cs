@@ -36,14 +36,13 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
             GoldCoin g1 = new GoldCoin(towers[i].GoldToBuy);
             GoldCoin g2 = new GoldCoin(towers[i].GoldToSell);
 
-            towers[i].Price = new Price(g1);
-            towers[i].CostToBuild = new Price(g2);
+            towers[i].BuyPrice = new Price(g1);
+            towers[i].SellPrice = new Price(g2);
         }
 
         m_transform = this.transform;
 
         Factory.prototypes = towers;
-        Debug.Log("Tower plot: " + DateTime.Now + Random.Range(-10.0f, 10.0f));
     }
 
     public override void UpdatePerFrame()
@@ -56,9 +55,6 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
         {
             if (hit.transform == transform)
             {
-                Debug.Log("Count: " + count++);
-                Debug.Log("UpdatePerFrame: " + transform.position);
-
                 if (!ShowItemsUICanvas.gameObject.activeSelf)
                 {
                     itemUICanvasModels = Factory.ShowTowerInUICanvas(this);
