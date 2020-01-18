@@ -1,4 +1,3 @@
-# friday-denfense
 # Tower Defense 3D
 
 # Authors: Friday 
