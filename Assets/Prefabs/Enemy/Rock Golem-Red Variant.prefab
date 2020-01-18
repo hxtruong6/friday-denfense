@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 140632, guid: e4183b0f256373044a4a3f833882e57a, type: 3}
       propertyPath: m_Name
-      value: Rock Golem-Red Variant
+      value: Rock Golem-Red
       objectReference: {fileID: 0}
     - target: {fileID: 434996, guid: e4183b0f256373044a4a3f833882e57a, type: 3}
       propertyPath: m_LocalPosition.x

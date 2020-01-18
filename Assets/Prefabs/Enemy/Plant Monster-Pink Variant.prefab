@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 123144, guid: ecb5bcd325ed8a14ca41901ba1186f53, type: 3}
       propertyPath: m_Name
-      value: Plant Monster-Pink Variant
+      value: Plant Monster-Pink
       objectReference: {fileID: 0}
     - target: {fileID: 468690, guid: ecb5bcd325ed8a14ca41901ba1186f53, type: 3}
       propertyPath: m_LocalPosition.x

@@ -19,6 +19,9 @@ MonoBehaviour:
   AvailableTowers:
   - {fileID: 190534875457269204, guid: 5db2255dc1c5d0a40b5b6fea60558ff7, type: 3}
   - {fileID: 8299363726019903023, guid: f5e37539714d604409165aa99c35ffb1, type: 3}
+  AvailableTowersSprite:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &3928926625132583750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28,7 +31,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_Name
-      value: Tower Base
+      value: Tower Base (14)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_Layer
@@ -40,15 +43,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.71
+      value: -15.78
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: -0.005583957
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 42.06
+      value: 6.04
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 22f4c30fdf7363645904186aa10bd16e, type: 3}
       propertyPath: m_LocalRotation.x

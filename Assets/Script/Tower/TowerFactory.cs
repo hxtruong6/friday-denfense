@@ -5,6 +5,7 @@ using UnityEngine;
 public class TowerFactory : BaseObject
 {
     public Tower[] prototypes;
+    public Sprite[] prototypesSprite;
 
     public Tower Build(Tower tower, Transform parentTransform)
     {
@@ -16,7 +17,7 @@ public class TowerFactory : BaseObject
 
         instant.transform.position = newPos;
         instant.transform.SetParent(parentTransform);
-        instant.gameObject.SetActive(true);
+        instant.gameObject.SetActive(true);        
         MyGameManager.BuildTower(new GoldCoin(instant.GoldToBuy));
         return instant;
     }
@@ -55,7 +56,8 @@ public class TowerFactory : BaseObject
         for (int i = 0; i < prototypes.Length; i++)
         {
             string description = prototypes[i].BuyPrice.GetPrice(CoinType.Gold).Number.ToString();
-            var sprite = prototypes[i].gameObject.GetComponent<SpriteRenderer>().sprite;
+            //var sprite = prototypes[i].gameObject.GetComponent<SpriteRenderer>().sprite;
+            var sprite = prototypesSprite[i];
             result.Add(new ItemUICanvasModel(sprite, description, itemUICanvasDelegate, prototypes[i]));
         }
 

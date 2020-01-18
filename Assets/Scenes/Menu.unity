@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -986,7 +986,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: e6665c74945404ef4ade98f1b1733a21, type: 2}
+  m_Texture: {fileID: 2800000, guid: b898d2c4c11a8489c9249512317e54d7, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1846,7 +1846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc740f43e3ea7746a1e19d7242f106c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayScence: TestMap
+  PlayScence: Map1
   SettingPanel: {fileID: 445432484}
   GuidelinePanel: {fileID: 1369657789}
 --- !u!1 &1200514755

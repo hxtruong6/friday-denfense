@@ -145,9 +145,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 55
-  maxHeight: 20
-  minHeight: 12
-  heightDampening: 3
+  maxHeight: 23
+  minHeight: 18
+  heightDampening: 6
   keyboardZoomingSensitivity: 2
   scrollWheelZoomingSensitivity: 25
   limitMap: 1

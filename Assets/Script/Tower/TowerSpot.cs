@@ -12,6 +12,7 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
     public ShowItemsUICanvas ShowItemsUICanvas;
 
     public List<GameObject> AvailableTowers = new List<GameObject>();
+    public List<GameObject> AvailableTowersSprite = new List<GameObject>();
 
     protected TowerFactory Factory = new TowerFactory();
     protected ItemUICanvasModel[] itemUICanvasModels;
@@ -30,6 +31,8 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
         myGameManager = FindObjectOfType<MyGameManager>();
 
         Tower[] towers = new Tower[AvailableTowers.Count];
+        Sprite[] towersSprite = new Sprite[AvailableTowers.Count];
+
         for (int i = 0; i < AvailableTowers.Count; i++)
         {
             towers[i] = AvailableTowers[i].gameObject.GetComponent<Tower>();
@@ -38,11 +41,15 @@ public class TowerSpot : MyObject, ItemUICanvasDelegate
 
             towers[i].BuyPrice = new Price(g1);
             towers[i].SellPrice = new Price(g2);
+
+            towersSprite[i] = AvailableTowersSprite[i].GetComponent<SpriteRenderer>().sprite;
         }
 
         m_transform = this.transform;
 
         Factory.prototypes = towers;
+        Factory.prototypesSprite = towersSprite;
+
     }
 
     public override void UpdatePerFrame()

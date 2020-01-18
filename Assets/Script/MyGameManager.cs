@@ -8,7 +8,7 @@ public class MyGameManager : MonoBehaviour
     public int MaxLevel = 10;
     public int Lives = 10; 
     
-    public static Financial Coins = new Financial(new Coin[1] {new GoldCoin(1000)});
+    public static Financial Coins = new Financial(new Coin[1] {new GoldCoin(120)});
     public Level CurrentLevel;
 
 //    public Transform CurrentTowerSelected;

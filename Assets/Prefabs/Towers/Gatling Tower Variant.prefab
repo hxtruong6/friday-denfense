@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 190534874705349671}
   - {fileID: 190534874705349669}
-  m_Father: {fileID: 190534875457237492}
+  m_Father: {fileID: 3249920346310024795}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &190534874720553315
@@ -14066,7 +14066,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.744, z: 0.994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 190534875457237492}
+  m_Father: {fileID: 3249920346310024795}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &190534875100107957
@@ -14244,27 +14244,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 190534875457237492}
+  - component: {fileID: 3249920346310024795}
   - component: {fileID: 190534875976121726}
   - component: {fileID: 190534875976121727}
-  - component: {fileID: 2187186847851457068}
   - component: {fileID: 2002452788}
+  - component: {fileID: 1695993022602960471}
   m_Layer: 0
   m_Name: Gatling Tower Variant
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &190534875457237492
-Transform:
+  m_IsActive: 1
+--- !u!224 &3249920346310024795
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190534875457269204}
   m_LocalRotation: {x: 0, y: 0.36330813, z: 0, w: 0.93166906}
-  m_LocalPosition: {x: 25.71, y: 2.3, z: 42.06}
+  m_LocalPosition: {x: 0, y: 0, z: 42.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 190534875457237494}
@@ -14273,6 +14273,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 42.607002, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 25.71, y: 2.3}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!135 &190534875976121726
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14314,54 +14319,6 @@ MonoBehaviour:
   thresholdShooting: 0.3
   bulletPosition: {fileID: 190534875100107958}
   particle: {fileID: 190534874720553315}
---- !u!212 &2187186847851457068
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190534875457269204}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!82 &2002452788
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14458,6 +14415,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!222 &1695993022602960471
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190534875457269204}
+  m_CullTransparentMesh: 0
 --- !u!1 &190534875457269206
 GameObject:
   m_ObjectHideFlags: 0
@@ -14484,11 +14449,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190534875457269206}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 190534875457237488}
-  m_Father: {fileID: 190534875457237492}
+  m_Father: {fileID: 3249920346310024795}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &190534875454370262
