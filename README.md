@@ -1,4 +1,17 @@
 # friday-denfense
+# Tower Defense 3D
+
+# Authors: Friday 
+
+ * 1612756 – NGUYỄN HỮU TRƯỜNG
+  
+  
+ * 1612899 – HOÀNG XUÂN TRƯỜNG
+
+
+Unity Version 2018.4.11f1
+
+Resource: http://unityassetcollection.com/tower-defense-and-moba-free-download/
 
 ## Cốt truyện
 Friday Defense là một game tháp phòng thủ. Nhiệm vụ của người chơi là không được để quái vật đi qua *khu rừng __phòng thủ__* vào ngôi làng hòa bình. Khi quái vật vào được ngôi làng Hòa bình, quái vật sẽ đánh phá nhà cửa và giết người dân vô tội. Ngôi làng sẽ không được yên bình như trước đây nó đã từng có.
